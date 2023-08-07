@@ -3,21 +3,22 @@ package com.homeofthewizard;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.springframework.vault.core.VaultTemplate;
 
 import javax.inject.Inject;
 
 @Mojo(name = "run", defaultPhase = LifecyclePhase.GENERATE_SOURCES)
-public class MyMojo extends AbstractMojo {
+public class VaultMojo extends AbstractMojo {
 
-    private final MyFriend myFriend;
+    private final VaultTemplate vaultTemplate;
 
     @Inject
-    public MyMojo(MyFriend myFriend) {
-        this.myFriend = myFriend;
+    public VaultMojo(VaultTemplate vaultTemplate) {
+        this.vaultTemplate = vaultTemplate;
     }
 
     public void execute() {
-        myFriend.hello();
+        System.out.println("vault injected");
     }
 
 }
